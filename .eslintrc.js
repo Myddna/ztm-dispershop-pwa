@@ -6,7 +6,6 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
     'airbnb',
   ],
   parserOptions: {
@@ -24,5 +23,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'no-param-reassign': 0,
     'no-console': 0,
+    'react/react-in-jsx-scope': 0,
   },
 };

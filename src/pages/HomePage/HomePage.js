@@ -1,10 +1,11 @@
 // import PropTypes from 'prop-types';
+import Directory from '../../components/Directory/Directory';
 import styles from './HomePage.module.scss';
 
 const HomePage = function () {
   return (
     <div className={styles.HomePage} data-testid="HomePage">
-      HomePage Component
+      <Directory />
     </div>
   );
 };
