@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './CollectionPreview.module.scss';
 import CollectionItem from '../CollectionItem/CollectionItem';
