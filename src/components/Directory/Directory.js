@@ -10,8 +10,11 @@ const Directory = function () {
   return (
     <div className={styles.Directory}>
       {products.map(({
-        id, title, imageUrl, size,
-      }) => <MenuItem key={id} title={title} image={imageUrl} subtitle="Shop now" size={size} />)}
+        id, ...otherSectionProps
+      }) => {
+        console.log(otherSectionProps);
+        return <MenuItem key={id} {...otherSectionProps} />;
+      })}
     </div>
   );
 };
