@@ -6,7 +6,7 @@ const CollectionPreview = function ({ title, items }) {
   // Careful: the filter and map over items re-run each time CollectionPreview has to re-render.
   // It is not optimal to filter here.
   return (
-    <div className={styles.PreviewCollection}>
+    <div className={styles.CollectionPreview}>
       <h1 className={styles.title}>{title}</h1>
       <div className={styles.preview}>
         {

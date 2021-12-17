@@ -4,15 +4,19 @@ import styles from './CollectionItem.module.scss';
 const CollectionItem = function ({
   id, name, imageUrl, price,
 }) {
+  console.log(id);
   return (
     <div className={styles.CollectionItem}>
-      {id}
-      {' '}
-      {name}
-      {' '}
-      {imageUrl}
-      {' '}
-      {price}
+      <div
+        className={styles.image}
+        style={{
+          backgroundImage: `url(${imageUrl})`,
+        }}
+      />
+      <div className={styles.footer}>
+        <span className={styles.name}>{name}</span>
+        <span className={styles.price}>{price}</span>
+      </div>
     </div>
   );
 };
