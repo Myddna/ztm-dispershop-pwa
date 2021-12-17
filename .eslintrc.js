@@ -25,7 +25,7 @@ module.exports = {
     'no-console': 0,
     'react/react-in-jsx-scope': 0,
     'jsx-a11y/click-events-have-key-events': 0,
-    'react/jsx-props-no-spreading': [{
+    'react/jsx-props-no-spreading': [1, {
       custom: 'ignore',
     }],
   },
