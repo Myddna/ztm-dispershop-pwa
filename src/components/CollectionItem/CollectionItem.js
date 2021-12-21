@@ -15,7 +15,10 @@ const CollectionItem = function ({
       />
       <div className={styles.footer}>
         <span className={styles.name}>{name}</span>
-        <span className={styles.price}>{price}</span>
+        <span className={styles.price}>
+          {price}
+          €
+        </span>
       </div>
     </div>
   );
@@ -29,7 +32,7 @@ CollectionItem.propTypes = {
 };
 
 CollectionItem.defaultProps = {
-  imageUrl: 'https://via.placeholder.com/234x350.png?text=DisperShop',
+  imageUrl: 'https://via.placeholder.com/500x800.png?text=Image+not+available',
 };
 
 export default CollectionItem;

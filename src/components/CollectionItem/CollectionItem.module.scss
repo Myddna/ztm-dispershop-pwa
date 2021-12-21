@@ -1,9 +1,14 @@
 .CollectionItem {
-  width: 22%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: clamp(350px, 50vh, 500px);
   align-items: center;
+  margin-bottom: 30px;
+  
+  @media screen and (min-width: 768px) {
+    width: 22%;
+  }
 
   .image {
     width: 100%;
@@ -21,12 +26,9 @@
     font-size: 18px;
 
     .name {
-      width: 90%;
+      flex-grow: 1;
       margin-bottom: 15px;
     }
 
-    .price {
-      width: 10%;
-    }
   }
 }
