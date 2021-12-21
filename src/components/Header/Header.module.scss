@@ -1,0 +1,29 @@
+.Header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+
+  .logoContainer {
+   padding: 1rem;
+  }
+
+  .logo {
+    width: 100%;
+    height: auto;
+  }
+
+  .options {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .option {
+      padding: 10px 15px;
+    }
+  }
+}
