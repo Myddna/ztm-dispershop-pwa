@@ -12,6 +12,6 @@ Be warned, the naming convention used for this code is not the same that is used
 
 ## About the styling
 
-At the time of writing this, I've styled lots of HTML and some styledComponents. The original project does not use StyledComponents as I am doing, so the scss structure is not optimal (I'm sure we don't need styles nesting neither SCSS for this project).
+At the time of writing this, I've styled lots of HTML and some CSS Modules. The original project does not use CSS Modules as I am doing, so the scss structure is not optimal (I'm sure we don't need styles nesting neither SCSS for this project).
 
 May be I'll fix it later.

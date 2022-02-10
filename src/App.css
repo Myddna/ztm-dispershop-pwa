@@ -1,5 +1,9 @@
+:root {
+  --font: 'Fira Sans Condensed', sans-serif;
+}
+
 body {
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: var(--font);
   padding: 20px 60px;
 }
 
