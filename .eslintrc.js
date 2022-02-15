@@ -28,5 +28,6 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 0,
     'react/jsx-props-no-spreading': 'off',
     'react/button-has-type': 'off',
+    'react/forbid-prop-types': 'off',
   },
 };

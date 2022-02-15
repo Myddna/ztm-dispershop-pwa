@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import CustomButton from '../CustomButton/CustomButton';
 import FormInput from '../FormInput/FormInput';
 import styles from './SignIn.module.scss';
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 const SignIn = function () {
   const [email, setEmail] = useState('');
@@ -60,7 +61,10 @@ const SignIn = function () {
           required
         />
 
-        <CustomButton type="submit">Sign in</CustomButton>
+        <div className={styles.buttons}>
+          <CustomButton type="submit">Sign in</CustomButton>
+          <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn>Sign in with Google</CustomButton>
+        </div>
       </form>
     </div>
   );
