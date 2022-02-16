@@ -1,3 +1,17 @@
 .SignUp {
-  
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin: 10px 0;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @media screen and (max-width: 767px){
+      justify-content: center;
+    }
+  }
 }

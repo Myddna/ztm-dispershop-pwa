@@ -2,7 +2,9 @@ import { initializeApp } from 'firebase/app';
 import {
   getFirestore, doc, getDoc, setDoc,
 } from 'firebase/firestore';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {
+  getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword,
+} from 'firebase/auth';
 
 const config = {
   apiKey: 'AIzaSyAzql-7US8nRj-kH1S8ENmn0kcgoVigwS8',
@@ -28,8 +30,7 @@ export const signInWithGoogle = function () {
   return signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+      const { accessToken: token } = GoogleAuthProvider.credentialFromResult(result);
       // The signed-in user info.
       const { user } = result;
 
@@ -42,9 +43,22 @@ export const signInWithGoogle = function () {
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
 
-      return {
+      throw new Error({
         errorCode, errorMessage, email, credential,
-      };
+      });
+    });
+};
+
+export const createEmailUser = function (email, password) {
+  return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential);
+      const { user } = userCredential;
+
+      return user;
+    })
+    .catch((error) => {
+      throw new Error(error);
     });
 };
 

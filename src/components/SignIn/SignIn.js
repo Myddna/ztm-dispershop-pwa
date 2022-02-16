@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 import CustomButton from '../CustomButton/CustomButton';
 import FormInput from '../FormInput/FormInput';
 import styles from './SignIn.module.scss';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 const SignIn = function () {
   const [email, setEmail] = useState('');
@@ -10,7 +10,6 @@ const SignIn = function () {
 
   const handleSubmit = function (event) {
     event.preventDefault();
-    console.log(email, password);
     setEmail('');
     setPassword('');
   };

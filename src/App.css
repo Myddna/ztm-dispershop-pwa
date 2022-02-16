@@ -15,3 +15,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.error-box {
+  background-color: orangered;
+  color: white;
+  padding: 0.5rem 1rem;
+}
