@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { signInWithGoogle, signInWithEmailUser } from '../../firebase/firebase.utils';
 import CustomButton from '../CustomButton/CustomButton';
 import FormInput from '../FormInput/FormInput';
 import styles from './SignIn.module.scss';
@@ -7,11 +7,20 @@ import styles from './SignIn.module.scss';
 const SignIn = function () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = function (event) {
+  const handleSubmit = async function (event) {
     event.preventDefault();
-    setEmail('');
-    setPassword('');
+
+    try {
+      await signInWithEmailUser(email, password);
+
+      setEmail('');
+      setPassword('');
+      setErrorMessage('');
+    } catch ({ message }) {
+      setErrorMessage(message);
+    }
   };
 
   /**
@@ -59,6 +68,11 @@ const SignIn = function () {
           handleChange={handleChangeMemo}
           required
         />
+        { errorMessage && (
+          <div className="error-box">
+            { errorMessage }
+          </div>
+        ) }
 
         <div className={styles.buttons}>
           <CustomButton type="submit">Sign in</CustomButton>

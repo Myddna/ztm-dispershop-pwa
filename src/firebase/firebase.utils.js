@@ -3,7 +3,8 @@ import {
   getFirestore, doc, getDoc, setDoc,
 } from 'firebase/firestore';
 import {
-  getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword,
+  getAuth, GoogleAuthProvider, signInWithPopup,
+  createUserWithEmailAndPassword, signInWithEmailAndPassword,
 } from 'firebase/auth';
 
 const config = {
@@ -49,10 +50,21 @@ export const signInWithGoogle = function () {
     });
 };
 
+export const signInWithEmailUser = function (email, password) {
+  return signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const { user } = userCredential;
+
+      return user;
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+};
+
 export const createEmailUser = function (email, password) {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      console.log(userCredential);
       const { user } = userCredential;
 
       return user;

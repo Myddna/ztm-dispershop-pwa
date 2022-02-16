@@ -26,7 +26,6 @@ const SignUp = function () {
 
     try {
       const user = await createEmailUser(email, password);
-      console.log(user, displayName);
       createUserProfileDocument(user, { displayName });
 
       // Clearing up the form state

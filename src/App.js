@@ -16,7 +16,6 @@ const App = function () {
   useEffect(() => {
     // Subscribing on mount
     const unsubscribeAuthStateChange = onAuthStateChanged(auth, async (userAuth) => {
-      console.log(userAuth);
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         // Listens to changes in the document
