@@ -2,28 +2,44 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
+import { onSnapshot } from 'firebase/firestore';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import Header from './components/Header/Header';
 import SignInSignUp from './pages/SignInSignUp/SignInSignUp';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 const App = function () {
   const [currentUser, setCurrentUser] = useState(null);
+  let unsubscribeUserSnapshot = () => { };
 
   useEffect(() => {
     // Subscribing on mount
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+    const unsubscribeAuthStateChange = onAuthStateChanged(auth, async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        // Listens to changes in the document
+        unsubscribeUserSnapshot = onSnapshot(userRef, (userDoc) => {
+          // The id comes with the snapshot, for the fields we have to call data() method
+          setCurrentUser({
+            id: userDoc.id,
+            ...userDoc.data(),
+          });
+        });
+      } else {
+        // The flow goes here on sign out (auth.signOut() called at Header.js)
+        setCurrentUser(null);
+      }
     });
 
     // Unsubscribing on unmount
     return () => {
-      unsubscribe();
+      unsubscribeAuthStateChange();
+      unsubscribeUserSnapshot();
     };
   }, []);
 
-  console.log(currentUser);
+  console.log('currentUser: ', currentUser);
 
   return (
     <div>
