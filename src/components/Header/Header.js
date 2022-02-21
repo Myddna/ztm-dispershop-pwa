@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; // HOC
 import styles from './Header.module.scss';
 import { auth } from '../../firebase/firebase.utils';
+import CartIcon from '../CartIcon/CartIcon';
+import CartDropdown from '../CartDropdown/CartDropdown';
 
 /**
  * This is a CreateReactApp "special"
@@ -10,7 +12,7 @@ import { auth } from '../../firebase/firebase.utils';
  */
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 
-const Header = function ({ currentUser }) {
+const Header = function ({ currentUser, hidden }) {
   console.log('Header currentUser: ', currentUser);
   return (
     <header className={styles.Header}>
@@ -35,7 +37,12 @@ const Header = function ({ currentUser }) {
             </Link>
           )
         }
+        <CartIcon />
       </nav>
+      {
+        hidden ? null
+          : <CartDropdown />
+      }
     </header>
   );
 };
@@ -47,16 +54,19 @@ Header.propTypes = {
     displayName: PropTypes.string,
     email: PropTypes.string,
   }),
+  hidden: PropTypes.bool,
 };
 
 Header.defaultProps = {
   currentUser: null,
+  hidden: true,
 };
 
 // Using the HOC
 // State: top level root reducer
 // this function name is a convention in redux
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 export default connect(mapStateToProps, null)(Header);
