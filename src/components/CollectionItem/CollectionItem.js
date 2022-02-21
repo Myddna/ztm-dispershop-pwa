@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import styles from './CollectionItem.module.scss';
 
 const CollectionItem = function ({
-  id, name, imageUrl, price,
+  name, imageUrl, price,
 }) {
-  console.log(id);
   return (
     <div className={styles.CollectionItem}>
       <div
@@ -25,7 +24,6 @@ const CollectionItem = function ({
 };
 
 CollectionItem.propTypes = {
-  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
   price: PropTypes.number.isRequired,

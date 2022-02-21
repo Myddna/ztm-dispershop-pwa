@@ -41,7 +41,12 @@ const Header = function ({ currentUser }) {
 };
 
 Header.propTypes = {
-  currentUser: PropTypes.func,
+  currentUser: PropTypes.shape({
+    id: PropTypes.string,
+    createdAt: PropTypes.any,
+    displayName: PropTypes.string,
+    email: PropTypes.string,
+  }),
 };
 
 Header.defaultProps = {
