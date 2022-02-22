@@ -22,14 +22,14 @@ const CartDropdown = function ({ cartItems }) {
 };
 
 CartDropdown.propTypes = {
-  cartItems: PropTypes.arrayOf(PropTypes.any),
+  cartItems: PropTypes.array,
 };
 
 CartDropdown.defaultProps = {
-  cartItems: null,
+  cartItems: [],
 };
 
-const mapStateToProps = function ({ cart: cartItems }) {
+const mapStateToProps = function ({ cart: { cartItems } }) {
   return {
     cartItems,
   };
