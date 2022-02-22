@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+import { addItem as addItemAction } from '../../redux/cart/cart.actions';
+
+import CustomButton from '../CustomButton/CustomButton';
 import styles from './CollectionItem.module.scss';
 
-const CollectionItem = function ({
-  name, imageUrl, price,
-}) {
+const CollectionItem = function ({ item, addItem }) {
+  const { name, imageUrl, price } = item;
   return (
     <div className={styles.CollectionItem}>
       <div
@@ -19,18 +23,30 @@ const CollectionItem = function ({
           €
         </span>
       </div>
+      <div className={styles.cartButtonWrapper}>
+        <CustomButton inverted onClick={() => addItem(item)}>Add to cart</CustomButton>
+      </div>
     </div>
   );
 };
 
 CollectionItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string,
-  price: PropTypes.number.isRequired,
+  item: PropTypes.shape({
+    name: PropTypes.string,
+    imageUrl: PropTypes.string,
+    price: PropTypes.number,
+  }),
+
+  addItem: PropTypes.func,
 };
 
 CollectionItem.defaultProps = {
-  imageUrl: 'https://via.placeholder.com/500x800.png?text=Image+not+available',
+  item: null,
+  addItem: null,
 };
 
-export default CollectionItem;
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItemAction(item)),
+});
+
+export default connect(null, mapDispatchToProps)(CollectionItem);

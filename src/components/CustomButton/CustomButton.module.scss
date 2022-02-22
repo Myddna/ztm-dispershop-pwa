@@ -15,11 +15,12 @@
   cursor: pointer;
   border: 1px solid black;
   margin: 0.5rem 0;
+  display: flex;
+  justify-content: center;
 
   &:hover {
     background-color: white;
     color: black;
-    
   }
 
   &.googleSignIn {
@@ -28,6 +29,15 @@
     border-color: transparent;
     &:hover {
       background-color: #357ae8;
+    }
+  }
+
+  &.inverted {
+    background-color: white;
+    color: black;
+    &:hover {
+      background-color: black;
+      color: white;
     }
   }
 }

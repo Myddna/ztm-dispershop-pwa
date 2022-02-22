@@ -5,6 +5,7 @@
   height: clamp(350px, 50vh, 500px);
   align-items: center;
   margin-bottom: 30px;
+  position: relative;
   
   @media screen and (min-width: 768px) {
     width: 22%;
@@ -16,6 +17,17 @@
     background-size: cover;
     background-position: center;
     margin-bottom: 5px;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover {
+    .image {
+      opacity: 0.8;
+    }
+
+    .cartButtonWrapper {
+      opacity: 0.85;
+    }
   }
 
   .footer {
@@ -29,6 +41,16 @@
       flex-grow: 1;
       margin-bottom: 15px;
     }
-
+  }
+  .cartButtonWrapper {
+    width: 80%;
+    opacity: 0;
+    position: absolute;
+    top: clamp(250px, 38vh, 400px);
+    transition: opacity 0.3s ease-in-out;
+    
+    & > button {
+      width: 100%;
+    }
   }
 }
