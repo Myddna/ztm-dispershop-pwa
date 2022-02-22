@@ -1,22 +1,38 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styles from './CartDropdown.module.scss';
 
 import CustomButton from '../CustomButton/CustomButton';
+import CartItem from '../CartItem/CartItem';
 
-const CartDropdown = function () {
+const CartDropdown = function ({ cartItems }) {
   return (
     <div className={styles.CartDropdown}>
       <div className={styles.cartItems}>
-        aa
+        {
+        cartItems.map((cartItem) => (
+          <CartItem key={cartItem.id} item={cartItem} />
+        ))
+        }
       </div>
       <CustomButton type="button">Go to checkout</CustomButton>
     </div>
   );
 };
 
-CartDropdown.propTypes = {};
+CartDropdown.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.any),
+};
 
-CartDropdown.defaultProps = {};
+CartDropdown.defaultProps = {
+  cartItems: null,
+};
 
-export default CartDropdown;
+const mapStateToProps = function ({ cart: cartItems }) {
+  return {
+    cartItems,
+  };
+};
+
+export default connect(mapStateToProps, null)(CartDropdown);
