@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; // HOC
+import { createStructuredSelector } from 'reselect';
 import styles from './Header.module.scss';
 import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../CartIcon/CartIcon';
 import CartDropdown from '../CartDropdown/CartDropdown';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selector';
 
 /**
  * This is a CreateReactApp "special"
@@ -65,8 +68,9 @@ Header.defaultProps = {
 // Using the HOC
 // State: top level root reducer
 // this function name is a convention in redux
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+// CreateStructuredSelector will automatically pass top level state object
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 export default connect(mapStateToProps, null)(Header);

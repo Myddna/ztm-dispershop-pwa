@@ -5,12 +5,14 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { onSnapshot } from 'firebase/firestore';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/ShopPage/ShopPage';
 import Header from './components/Header/Header';
 import SignInSignUp from './pages/SignInSignUp/SignInSignUp';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser as setCurrentUserAction } from './redux/user/user.actions';
+import { selectCurrentUser } from './redux/user/user.selector';
 
 const App = function ({ currentUser, setCurrentUser }) {
   let unsubscribeUserSnapshot = () => { };
@@ -78,8 +80,8 @@ App.defaultProps = {
 };
 
 // Redux
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUserAction(user)),

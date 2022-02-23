@@ -19,3 +19,8 @@ export const selectCartItemsCount = createSelector(
     return cartItems.reduce((prev, current) => prev + current.quantity, 0);
   },
 );
+
+export const selectCartHidden = createSelector(
+  [selectCart],
+  (cart) => cart.hidden,
+);
