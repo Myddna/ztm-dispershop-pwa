@@ -9,9 +9,4 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };
 
-export const countCartItems = (cartItems) => {
-  const totalCartItems = cartItems.reduce((prev, current) => prev + current.quantity, 0);
-  return totalCartItems;
-};
-
 export default addItemToCart;

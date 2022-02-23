@@ -6,29 +6,31 @@ import styles from './CartIcon.module.scss';
 
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
 import { toggleCartHidden as toggleCartHiddenAction } from '../../redux/cart/cart.actions';
-import { countCartItems } from '../../redux/cart/cart.utils';
+import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
 
-const CartIcon = function ({ cartItems, toggleCartHidden }) {
+const CartIcon = function ({ itemCount, toggleCartHidden }) {
+  console.log('Rendering CartIcon component');
   return (
     <div className={styles.CartIcon} onClick={toggleCartHidden} role="button" tabIndex={0}>
       <ShoppingIcon className={styles.shoppingIcon} />
-      <span className={styles.itemCount}>{countCartItems(cartItems)}</span>
+      <span className={styles.itemCount}>{itemCount}</span>
     </div>
   );
 };
 
 CartIcon.propTypes = {
   toggleCartHidden: PropTypes.func,
-  cartItems: PropTypes.array,
+  itemCount: PropTypes.number,
 };
 
 CartIcon.defaultProps = {
   toggleCartHidden: null,
-  cartItems: [],
+  itemCount: 0,
 };
 
-const mapStateToProps = ({ cart: { cartItems } }) => ({
-  cartItems,
+// Example of selectors use to memoize the items count
+const mapStateToProps = (state) => ({
+  itemCount: selectCartItemsCount(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
