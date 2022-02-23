@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import HomePage from './pages/HomePage/HomePage';
 import ShopPage from './pages/ShopPage/ShopPage';
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
 import Header from './components/Header/Header';
 import SignInSignUp from './pages/SignInSignUp/SignInSignUp';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
@@ -50,6 +51,7 @@ const App = function ({ currentUser, setCurrentUser }) {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         {/* Preventing authenticated users from signin-in or signin-up again */}
         <Route
           path="/sign-in"
