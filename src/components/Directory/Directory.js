@@ -12,10 +12,7 @@ const Directory = function ({ sections }) {
     <div className={styles.Directory}>
       {sections.map(({
         id, ...otherSectionProps
-      }) => {
-        console.log(otherSectionProps);
-        return <MenuItem key={id} {...otherSectionProps} />;
-      })}
+      }) => <MenuItem key={id} {...otherSectionProps} />)}
     </div>
   );
 };
